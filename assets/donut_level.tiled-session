@@ -1,0 +1,90 @@
+{
+    "activeFile": "donut_level.tmx",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "fileStates": {
+        "": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "#tilemap_packed": {
+            "scaleInDock": 1
+        },
+        "#tilemap_packed_candy": {
+            "scaleInDock": 1
+        },
+        "C:/Users/neila/OneDrive/Documents/cmpm-120_codes/section2_things/PlatformImprovement/assets/platformer-level-1.tmx": {
+            "scale": 1.0291666666666666,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 432.38866396761136,
+                "y": 225.4251012145749
+            }
+        },
+        "C:/Users/neila/OneDrive/Documents/cmpm-120_codes/section2_things/PlatformImprovement/assets/platformer-level-1.tmx#kenny_tilemap_packed": {
+            "scaleInDock": 1
+        },
+        "donut_level.tmx": {
+            "expandedObjectLayers": [
+                3
+            ],
+            "scale": 0.75,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 222.66666666666663,
+                "y": 130.66666666666669
+            }
+        },
+        "donut_level.tmx#tilemap-backgrounds": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "donut_level.tmx#tilemap_packed": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "donut_level.tmx#tilemap_packed_candy": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "platformer-level-1.tmx": {
+            "scale": 1.2349999999999999,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 360.3238866396762,
+                "y": 179.75708502024295
+            }
+        },
+        "platformer-level-1.tmx#Kenny_tilemap_candy": {
+            "scaleInDock": 1
+        },
+        "platformer-level-1.tmx#kenny_tilemap_packed": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        }
+    },
+    "last.exportedFilePath": "C:/Users/neila/OneDrive/Documents/cmpm-120_codes/section2_things/StarterPlatformer/assets",
+    "last.imagePath": "C:/Users/neila/OneDrive/Documents/cmpm-120_codes/section2_things/StarterPlatformer/assets",
+    "map.lastUsedExportFilter": "JSON map files (*.tmj *.json)",
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 18,
+    "map.tileWidth": 18,
+    "openFiles": [
+        "platformer-level-1.tmx",
+        "C:/Users/neila/OneDrive/Documents/cmpm-120_codes/section2_things/PlatformImprovement/assets/platformer-level-1.tmx",
+        "donut_level.tmx"
+    ],
+    "project": "donut_level.tiled-project",
+    "property.type": "bool",
+    "recentFiles": [
+        "platformer-level-1.tmx",
+        "C:/Users/neila/OneDrive/Documents/cmpm-120_codes/section2_things/PlatformImprovement/assets/platformer-level-1.tmx",
+        "donut_level.tmx"
+    ],
+    "tileset.embedInMap": true,
+    "tileset.tileSize": {
+        "height": 18,
+        "width": 18
+    }
+}

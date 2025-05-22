@@ -22,7 +22,7 @@ let config = {
     physics: {
         default: 'arcade',
         arcade: {
-            debug: true,
+            debug: false,
             gravity: {
                 x: 0,
                 y: 0
@@ -36,6 +36,6 @@ let config = {
 
 var cursors;
 const SCALE = 2.0;
-var my = {sprite: {}, text: {}};
+var my = {sprite: {}, text: {}, vfx: {}};
 
 const game = new Phaser.Game(config);

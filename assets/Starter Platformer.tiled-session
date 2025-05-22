@@ -13,11 +13,11 @@
             "scaleInEditor": 1
         },
         "C:/Users/neila/OneDrive/Documents/cmpm-120_codes/section2_things/PlatformImprovement/assets/platformer-level-1.tmx": {
-            "scale": 2,
-            "selectedLayer": 1,
+            "scale": 0.75,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 526,
-                "y": 151.75
+                "x": 436.66666666666674,
+                "y": 213.99999999999994
             }
         },
         "C:/Users/neila/OneDrive/Documents/cmpm-120_codes/section2_things/PlatformImprovement/assets/platformer-level-1.tmx#kenny_tilemap_packed": {
@@ -25,10 +25,10 @@
         },
         "platformer-level-1.tmx": {
             "scale": 1,
-            "selectedLayer": 1,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 313.5,
-                "y": 160
+                "x": 306.5,
+                "y": 207.5
             }
         },
         "platformer-level-1.tmx#Kenny_tilemap_candy": {
@@ -47,11 +47,13 @@
     "map.tileWidth": 18,
     "map.width": 40,
     "openFiles": [
-        "platformer-level-1.tmx"
+        "platformer-level-1.tmx",
+        "C:/Users/neila/OneDrive/Documents/cmpm-120_codes/section2_things/PlatformImprovement/assets/platformer-level-1.tmx"
     ],
     "project": "Starter Platformer.tiled-project",
     "property.type": "bool",
     "recentFiles": [
+        "C:/Users/neila/OneDrive/Documents/cmpm-120_codes/section2_things/PlatformImprovement/assets/platformer-level-1.tmx",
         "platformer-level-1.tmx"
     ],
     "tileset.embedInMap": true,
