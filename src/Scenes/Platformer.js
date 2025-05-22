@@ -54,6 +54,11 @@ class Platformer extends Phaser.Scene {
         this.physics.world.enable(this.donut, Phaser.Physics.Arcade.STATIC_BODY);
 
         this.donutGroup = this.add.group(this.donut);
+        //getting the amount of donuts in the level
+        this.totalDonut = this.donutGroup.getLength();
+        //the value that gets updated for every collection and the check
+        this.collected = 0;
+
 
         // set up player avatar
         //my.sprite.player = this.physics.add.sprite(game.config.width/4, game.config.height/2, "platformer_characters", "tile_0000.png").setScale(SCALE)
@@ -76,7 +81,16 @@ class Platformer extends Phaser.Scene {
         //the dount collision with player
         this.physics.add.overlap(my.sprite.player, this.donutGroup, (obj1, obj2) => {
             my.vfx.foodCollect.explode(10, obj2.x, obj2.y);
+            this.sound.play("collect", {
+                volume: 0.5
+            });
             obj2.destroy();
+
+            this.collected++;
+
+            if(this.collected >= this.totalDonut){
+                this.scene.restart();
+            }
         });
 
         // set up Phaser-provided cursor key input
