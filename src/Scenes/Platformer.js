@@ -39,11 +39,6 @@ class Platformer extends Phaser.Scene {
 
         // Create a layer
         this.groundLayer = this.map.createLayer("Ground-n-Platforms", this.tileset, 0, 0);
-        //this.groundLayer.setScale(2.0);
-
-        //Create the backgroud layer
-        
-        //this.background.setScale(2.0);
 
         // Make it collidable
         this.groundLayer.setCollisionByProperty({
@@ -76,6 +71,12 @@ class Platformer extends Phaser.Scene {
         // Enable collision handling
         this.physics.add.collider(my.sprite.player, this.groundLayer);
 
+        //the camera code
+        this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
+        this.cameras.main.startFollow(my.sprite.player, true, 0.25, 0.50); // (target, [,roundPixels][,lerpX][,lerpY])
+        this.cameras.main.setDeadzone(5, 5);
+        this.cameras.main.setZoom(this.SCALE);
+
         //makeing the collection vfx
         my.vfx.foodCollect =  this.add.particles(0,0, "kenny-particles", {
             frame: 'star_01.png',
@@ -104,14 +105,20 @@ class Platformer extends Phaser.Scene {
                 //this.scene.restart();
                 this.physics.pause();
                 my.sprite.player.anims.stop();
-                let centerX = this.cameras.main.width / 2;
-                let centerY = this.cameras.main.height / 2;
+                //let centerX = this.cameras.main.width / 2;
+                //let centerY = this.cameras.main.height / 2;
 
-                this.add.text(centerX, centerY, 'Play Again?', {
+                this.add.text(this.cameras.main.midPoint.x, this.cameras.main.midPoint.y, 'Play Again?', {
                     fontFamily: 'Comic Sans MS',
-                    fontSize: '100px',
-                    color: 'black',
+                    fontSize: '70px',
+                    color: 'green',
                 });
+                this.add.text(this.cameras.main.midPoint.x, this.cameras.main.midPoint.y + 100, 'Press R', {
+                    fontFamily: 'Comic Sans MS',
+                    fontSize: '45px',
+                    color: 'green',
+                });
+
 
 
             }
@@ -119,16 +126,6 @@ class Platformer extends Phaser.Scene {
 
         // set up Phaser-provided cursor key input
         cursors = this.input.keyboard.createCursorKeys();
-
-        this.rKey = this.input.keyboard.addKey('R');
-
-        // debug key listener (assigned to D key)
-        /*
-        this.input.keyboard.on('keydown-D', () => {
-            this.physics.world.drawDebug = this.physics.world.drawDebug ? false : true
-            this.physics.world.debugGraphic.clear()
-        }, this);
-        */
 
         //adding the walking vfx
         my.vfx.walking = this.add.particles(0,0, "kenny-particles", {
@@ -141,11 +138,16 @@ class Platformer extends Phaser.Scene {
         });
         my.vfx.walking.stop();
 
-        //the camera code
-        this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
-        this.cameras.main.startFollow(my.sprite.player, true, 0.25, 0.25); // (target, [,roundPixels][,lerpX][,lerpY])
-        this.cameras.main.setDeadzone(5, 5);
-        this.cameras.main.setZoom(this.SCALE);
+
+        //setting audio for walking and the reset key
+        this.rKey = this.input.keyboard.addKey('R');
+
+        this.walkingOne = this.sound.add("walkOne", {
+            volume: 0.2,
+            loop: true,
+            delay: 0.1,
+            rate: 0.5
+        });
 
     }
 
@@ -161,6 +163,9 @@ class Platformer extends Phaser.Scene {
             my.vfx.walking.startFollow(my.sprite.player, my.sprite.player.displayWidth/2-10, my.sprite.player.displayHeight/2-5, false);
             my.vfx.walking.setParticleSpeed(this.PARTICLE_VELOCITY, 0);
 
+            //the audio
+            this.walkingOne.play();
+
             //adding the limit for the particles to only play when the player is on the ground
             if(my.sprite.player.body.blocked.down){
                 my.vfx.walking.start();
@@ -172,6 +177,9 @@ class Platformer extends Phaser.Scene {
 
             my.sprite.player.setFlip(true, false);
             my.sprite.player.anims.play('walk', true);
+
+            //audio
+            this.walkingOne.play();
 
             //adding the particles
             my.vfx.walking.startFollow(my.sprite.player, my.sprite.player.displayWidth/2-10, my.sprite.player.displayHeight/2-5, false);
@@ -189,6 +197,9 @@ class Platformer extends Phaser.Scene {
             my.sprite.player.body.setDragX(this.DRAG);
 
             my.sprite.player.anims.play('idle');
+
+            //stop audio
+            this.walkingOne.stop();
 
             //stoping the vfx
             my.vfx.walking.stop();

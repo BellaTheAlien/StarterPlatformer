@@ -28,6 +28,8 @@ class Load extends Phaser.Scene {
         this.load.audio("collect", "jingles_PIZZI09.ogg");
         //audio for "death"
         this.load.audio("death", "jingles_PIZZI03.ogg");
+        //audio for walking and hitting the ground
+        this.load.audio("walkOne", "footstep_snow_000.ogg");
 
     }
 
