@@ -26,6 +26,8 @@ class Load extends Phaser.Scene {
 
         //audio for pick up
         this.load.audio("collect", "jingles_PIZZI09.ogg");
+        //audio for "death"
+        this.load.audio("death", "jingles_PIZZI03.ogg");
 
     }
 

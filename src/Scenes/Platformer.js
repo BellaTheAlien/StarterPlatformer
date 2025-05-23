@@ -3,6 +3,11 @@ class Platformer extends Phaser.Scene {
         super("platformerScene");
     }
 
+    //the only preload is for the animated tiles
+    preload() {
+        this.load.scenePlugin('AnimatedTiles', './lib/AnimatedTiles.js', 'animatedTiles', 'animatedTiles');
+    }
+
     init() {
         // variables and settings
         this.ACCELERATION = 400; //500
@@ -18,7 +23,10 @@ class Platformer extends Phaser.Scene {
     create() {
         // Create a new tilemap game object which uses 18x18 pixel tiles, and is
         // 45 tiles wide and 25 tiles tall.
-        this.map = this.add.tilemap("donut_level", 18, 18, 45, 25);//platformer-level-1
+        this.map = this.add.tilemap("donut_level", 18, 18, 45, 25);
+
+        // the create code for the animated tiles
+        this.animatedTiles.init(this.map);
 
         // Add a tileset to the map
         // First parameter: name we gave the tileset in Tiled
@@ -86,15 +94,33 @@ class Platformer extends Phaser.Scene {
             });
             obj2.destroy();
 
+            //adding number of collected
             this.collected++;
 
+
+            //to end the game
+            //pops text that the game is over
             if(this.collected >= this.totalDonut){
-                this.scene.restart();
+                //this.scene.restart();
+                this.physics.pause();
+                my.sprite.player.anims.stop();
+                let centerX = this.cameras.main.width / 2;
+                let centerY = this.cameras.main.height / 2;
+
+                this.add.text(centerX, centerY, 'Play Again?', {
+                    fontFamily: 'Comic Sans MS',
+                    fontSize: '100px',
+                    color: 'black',
+                });
+
+
             }
         });
 
         // set up Phaser-provided cursor key input
         cursors = this.input.keyboard.createCursorKeys();
+
+        this.rKey = this.input.keyboard.addKey('R');
 
         // debug key listener (assigned to D key)
         /*
@@ -108,9 +134,9 @@ class Platformer extends Phaser.Scene {
         my.vfx.walking = this.add.particles(0,0, "kenny-particles", {
             frame: ['smoke_03.png', 'smoke_01.png'],
             random: true,
-            scale: {start: 0.03, end: 0.1},
-            maxAliveParticles: 20,
-            gravityY: -300,
+            scale: {start: 0.03, end: 0.07},
+            maxAliveParticles: 40,
+            gravityY: -100,
             alpha: {start: 1, end: 0.1},
         });
         my.vfx.walking.stop();
@@ -177,6 +203,21 @@ class Platformer extends Phaser.Scene {
             // TODO: set a Y velocity to have the player "jump" upwards (negative Y direction)
             my.sprite.player.body.setVelocityY(this.JUMP_VELOCITY);
 
+        }
+
+        //to check if the player falls out of the word
+        //resets the whole scene when true
+        //the 50 is for a small time gap
+        if (my.sprite.player.y > this.map.heightInPixels + 100){
+            this.sound.play("death", {
+                volume: 0.5
+            });
+            this.scene.restart();
+        }
+
+        //to replay the level
+        if(Phaser.Input.Keyboard.JustDown(this.rKey)) {
+            this.scene.restart();
         }
     }
 }
